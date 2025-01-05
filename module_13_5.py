@@ -3,7 +3,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-api = ''
+api = '7680362534:AAFxREcENIpGw2eLIBR25rgd7xjTql0mjyQ'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
@@ -44,7 +44,7 @@ async def set_weight(message, state):
 async def calc_calories(message, state):
     await state.update_data(weight=message.text)
     data = await state.get_data()
-    result = 10 * float(data['weight']) + 6.25 * float(data['growth']) + 10 * float(data['age']) + 5
+    result = 10 * float(data['weight']) + 6.25 * float(data['growth']) - 5 * float(data['age']) + 5
     await message.answer(f'Ваша норма калорий {result} в день')
     await state.finish()
 
